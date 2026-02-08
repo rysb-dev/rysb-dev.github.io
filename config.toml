@@ -1,0 +1,53 @@
+# The URL the site will be built for
+base_url = "https://rysb.dev"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+title = "Ryan Sullenberger"
+description = "Applied Physicist turned Software Engineer. Specializing in Python and scientific computing."
+
+[extra]
+author = "Ryan Sullenberger"
+role = "Developer / Applied Scientist"
+location = "Massachusetts, USA"
+alias = "rysb-dev"
+
+# Core Stack (Ordered by priority)
+stack = [
+    "Python",
+    "Data Science",
+    "Scientific Computing", 
+    "Rust",
+    "Linux",
+    "Agentic Workflows"
+]
+
+[[extra.socials]]
+name = "GitHub"
+url = "https://github.com/rysb-dev"
+icon = "github"
+
+[[extra.socials]]
+name = "LinkedIn"
+url = "https://linkedin.com/in/sullenberger"
+icon = "linkedin"
+
+[[extra.projects]]
+name = "Agari"
+url = "https://github.com/rysb-dev/agari"
+description = "A Riichi Mahjong scoring engine built with Rust and WASM."
+tags = ["Rust", "WASM", "Game Logic"]
+
+[[extra.projects]]
+name = "Scientific Imaging"
+description = "Research in computational reconfigurable imaging spectrometers and photoacoustic communications."
+tags = ["Python", "Physics", "Optics"]
+
+[[extra.projects]]
+name = "Custom Woodworking"
+description = "Reversible-top mahjong table built from African Mahogany."
+tags = ["Woodworking", "Design"]

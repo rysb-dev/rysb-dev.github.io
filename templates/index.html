@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.title }}</title>
+    <meta name="description" content="{{ config.description }}">
+    <link rel="icon" type="image/svg+xml" href="{{ get_url(path="favicon.svg") }}">
+    <link rel="stylesheet" href="{{ get_url(path="style.css") }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ config.extra.author }}</h1>
+            <div class="role">
+                <span>{{ config.extra.role }}</span>
+                <span style="color: var(--border-default)"> // </span>
+                <span>{{ config.extra.location }}</span>
+            </div>
+            <p style="margin-top: 1rem; max-width: 580px;">
+                {{ config.description }} Background in lasers, optics, and plasma physics research at MIT Lincoln Laboratory and Princeton. Now building high-performance software tools.
+            </p>
+        </header>
+
+        <section id="about">
+            <h2>Core Stack</h2>
+            <div class="skills-grid">
+                {% for skill in config.extra.stack %}
+                <div class="skill-item">{{ skill }}</div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-list">
+                {% for project in config.extra.projects %}
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-title">
+                            {% if project.url %}
+                            <a href="{{ project.url }}" target="_blank" style="border-bottom: none; color: inherit;">{{ project.name }} ↗</a>
+                            {% else %}
+                            {{ project.name }}
+                            {% endif %}
+                        </div>
+                        <div class="project-tags">
+                            {% for tag in project.tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <p>{{ project.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer>
+            <span>&copy; {{ now() | date(format="%Y") }} {{ config.extra.alias }}</span>
+            <div class="social-links">
+                {% for social in config.extra.socials %}
+                <a href="{{ social.url }}" class="social-link" target="_blank">{{ social.name }}</a>
+                {% endfor %}
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

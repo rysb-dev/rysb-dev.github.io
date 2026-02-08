@@ -1,0 +1,218 @@
+/* Zed / Linear Inspired Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg-app: #0b0b0b;
+    --bg-panel: #18181b; /* Slightly lighter for contrast */
+    --border-default: #27272a;
+    --border-active: #3f3f46;
+    
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    
+    /* Zed Blue Accent */
+    --accent-primary: #60a5fa; /* Electric Blue */
+    --accent-hover: #3b82f6;
+    
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    
+    --max-width: 680px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--spacing-md) var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+h2 {
+    font-size: 0.875rem;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-default);
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.role {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* Sections */
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-default);
+    padding: 0.4rem 1rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-align: center;
+    border-radius: 9999px; /* Pill shape */
+    font-family: var(--font-mono);
+    transition: all 0.2s ease;
+}
+
+.skill-item:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(96, 165, 250, 0.05);
+}
+
+/* Projects List */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid var(--border-default);
+    transition: border-left-color 0.2s ease;
+}
+
+.project-item:hover {
+    border-left-color: var(--accent-primary);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.project-tags {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    background: rgba(96, 165, 250, 0.1);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+/* Footer / Socials */
+footer {
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-default);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-link {
+    color: var(--text-secondary);
+    border-bottom: none;
+}
+
+.social-link:hover {
+    color: var(--accent-primary);
+    border-bottom: none;
+}
