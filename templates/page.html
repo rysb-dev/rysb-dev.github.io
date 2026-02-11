@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} — {{ config.title }}</title>
+    <meta name="description" content="{{ page.description }}">
+    <link rel="icon" type="image/svg+xml" href="{{ get_url(path="favicon.svg") }}">
+    <link rel="stylesheet" href="{{ get_url(path="style.css") }}">
+</head>
+<body>
+    <div class="container page-container">
+        <nav class="page-nav">
+            <a href="{{ get_url(path="/") }}#projects">&larr; Back</a>
+        </nav>
+
+        <header class="page-header">
+            <h1>{{ page.title }}</h1>
+            {% if page.extra.subtitle %}
+            <div class="page-subtitle">{{ page.extra.subtitle }}</div>
+            {% endif %}
+            {% if page.date %}
+            <time class="page-date">{{ page.date | date(format="%B %Y") }}</time>
+            {% endif %}
+        </header>
+
+        {% if page.extra.feature_image %}
+        {% set hero = resize_image(path=page.colocated_path ~ page.extra.feature_image, width=1360, op="fit_width", quality=85) %}
+        <div class="hero-image">
+            <img src="{{ hero.url }}" alt="{{ page.title }}" width="{{ hero.width }}" height="{{ hero.height }}">
+        </div>
+        {% endif %}
+
+        <article class="page-content">
+            {{ page.content | safe }}
+        </article>
+
+        {% set_global gallery_images = [] %}
+        {% for asset in page.assets %}
+            {% if asset is matching("[.](jpg|jpeg|png|webp)$") %}
+                {% set filename = asset | split(pat="/") | last %}
+                {% if filename != page.extra.feature_image %}
+                    {% set_global gallery_images = gallery_images | concat(with=asset) %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if gallery_images | length > 0 %}
+        <section class="gallery-section">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                {% for asset in gallery_images %}
+                {% set thumb = resize_image(path=asset, width=680, height=510, op="fill", quality=80) %}
+                {% set full = resize_image(path=asset, width=1920, op="fit_width", quality=90) %}
+                <div class="gallery-item" data-lightbox="{{ full.url }}">
+                    <img src="{{ thumb.url }}" alt="{{ page.title }} photo {{ loop.index }}" width="{{ thumb.width }}" height="{{ thumb.height }}" loading="lazy">
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div class="lightbox" id="lightbox" hidden>
+            <div class="lightbox-backdrop"></div>
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+            <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+            <div class="lightbox-content">
+                <img src="" alt="">
+            </div>
+            <div class="lightbox-counter"></div>
+        </div>
+        {% endif %}
+
+        <footer>
+            <span>&copy; {{ now() | date(format="%Y") }} {{ config.extra.alias }}</span>
+            <div class="social-links">
+                {% for social in config.extra.socials %}
+                <a href="{{ social.url }}" class="social-link" target="_blank">{{ social.name }}</a>
+                {% endfor %}
+            </div>
+        </footer>
+    </div>
+    {% if gallery_images | length > 0 %}
+    <script src="{{ get_url(path="lightbox.js") }}"></script>
+    {% endif %}
+</body>
+</html>

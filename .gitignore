@@ -2,3 +2,5 @@ public
 result
 .DS_Store
 .sass-cache
+static/processed_images
+.claude/

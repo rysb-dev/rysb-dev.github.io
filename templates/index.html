@@ -39,7 +39,11 @@
                     <div class="project-header">
                         <div class="project-title">
                             {% if project.url %}
-                            <a href="{{ project.url }}" target="_blank" style="border-bottom: none; color: inherit;">{{ project.name }} ↗</a>
+                                {% if project.url is starting_with("/") %}
+                                <a href="{{ project.url }}" style="border-bottom: none; color: inherit;">{{ project.name }} &rarr;</a>
+                                {% else %}
+                                <a href="{{ project.url }}" target="_blank" style="border-bottom: none; color: inherit;">{{ project.name }} ↗</a>
+                                {% endif %}
                             {% else %}
                             {{ project.name }}
                             {% endif %}

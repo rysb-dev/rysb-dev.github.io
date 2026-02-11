@@ -20,7 +20,7 @@ alias = "rysb-dev"
 stack = [
     "Python",
     "Data Science",
-    "Scientific Computing", 
+    "Scientific Computing",
     "Rust",
     "Linux",
     "Agentic Workflows"
@@ -49,5 +49,6 @@ tags = ["Python", "Physics", "Optics"]
 
 [[extra.projects]]
 name = "Custom Woodworking"
+url = "/projects/mahjong-table/"
 description = "Reversible-top mahjong table built from African Mahogany."
 tags = ["Woodworking", "Design"]
