@@ -11,7 +11,7 @@
                 box-sizing: border-box;
             }
             body {
-                background: #000;
+                background: transparent;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -466,9 +466,8 @@
 
             // Animation loop
             function animate() {
-                // Clear
-                ctx.fillStyle = "#000";
-                ctx.fillRect(0, 0, W, H);
+                // Clear with transparency
+                ctx.clearRect(0, 0, W, H);
 
                 // Draw optical axis
                 drawOpticalAxis();
