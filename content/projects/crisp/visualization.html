@@ -74,7 +74,7 @@
                 reset() {
                     this.x = scene.x;
                     this.y = scene.y + (Math.random() - 0.5) * 60;
-                    this.phase = 0; // 0: to prism1, 1: dispersing, 2: to mask, 3: to prism2, 4: combining, 5: to detector
+                    this.phase = 0; // 0: to prism1, 1: dispersing, 2: to mask, 3: through mask, 4: to prism2 (parallel), 5: combining in prism2, 6: to detector, 7: hit detector
                     this.colorIndex = Math.floor(
                         Math.random() * spectralColors.length,
                     );
@@ -89,7 +89,7 @@
 
                 update() {
                     // Store trail
-                    if (this.phase > 0 && this.phase < 6) {
+                    if (this.phase > 0 && this.phase < 7) {
                         this.trail.push({
                             x: this.x,
                             y: this.y,
@@ -147,22 +147,39 @@
                             }
                             break;
 
-                        case 4: // Moving to prism 2 and recombining
+                        case 4: // Moving to prism 2 (parallel - maintaining dispersed positions)
                             this.x += this.speed;
-                            this.y += (H / 2 - this.y) * 0.08;
-                            if (this.x >= prism2.x + 50) {
+                            // Stay at dispersed y position - no recombining yet
+                            if (this.x >= prism2.x - 30) {
                                 this.phase = 5;
+                                // Calculate collimated target - small spread instead of single line
+                                const collimatedSpread = 30; // narrow beam width
+                                const normalizedIndex =
+                                    this.colorIndex /
+                                    (spectralColors.length - 1);
+                                this.targetY =
+                                    H / 2 -
+                                    collimatedSpread / 2 +
+                                    normalizedIndex * collimatedSpread;
                             }
                             break;
 
-                        case 5: // Moving to detector
+                        case 5: // Combining inside prism 2
                             this.x += this.speed;
-                            if (this.x >= detector.x) {
+                            this.y += (this.targetY - this.y) * 0.15;
+                            if (this.x >= prism2.x + 50) {
                                 this.phase = 6;
                             }
                             break;
 
-                        case 6: // Hit detector - trigger cube update and reset
+                        case 6: // Moving to detector (collimated beam)
+                            this.x += this.speed;
+                            if (this.x >= detector.x) {
+                                this.phase = 7;
+                            }
+                            break;
+
+                        case 7: // Hit detector - trigger cube update and reset
                             cubeData[this.colorIndex] = Math.min(
                                 1,
                                 cubeData[this.colorIndex] + 0.15,
