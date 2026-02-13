@@ -44,6 +44,7 @@ tags = ["Rust", "WASM", "Game Logic"]
 
 [[extra.projects]]
 name = "Scientific Imaging"
+url = "/projects/crisp/"
 description = "Research in computational reconfigurable imaging spectrometers and photoacoustic communications."
 tags = ["Python", "Physics", "Optics"]
 

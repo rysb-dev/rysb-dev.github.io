@@ -24,7 +24,11 @@
             {% endif %}
         </header>
 
-        {% if page.extra.feature_image %}
+        {% if page.extra.feature_visualization %}
+        <div class="hero-visualization">
+            <iframe src="{{ get_url(path=page.path ~ page.extra.feature_visualization) }}" frameborder="0" scrolling="no" title="{{ page.title }} visualization"></iframe>
+        </div>
+        {% elif page.extra.feature_image %}
         {% set hero = resize_image(path=page.colocated_path ~ page.extra.feature_image, width=1360, op="fit_width", quality=85) %}
         <div class="hero-image">
             <img src="{{ hero.url }}" alt="{{ page.title }}" width="{{ hero.width }}" height="{{ hero.height }}">
