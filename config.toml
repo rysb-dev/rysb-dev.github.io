@@ -43,6 +43,12 @@ description = "A Riichi Mahjong scoring engine built with Rust and WASM."
 tags = ["Rust", "WASM", "Game Logic"]
 
 [[extra.projects]]
+name = "Agari Game"
+url = "/projects/agari-game/"
+description = "Cross-platform Riichi Mahjong game built from scratch in Rust and Bevy. Work in progress."
+tags = ["Rust", "Bevy", "Game Dev", "WIP"]
+
+[[extra.projects]]
 name = "Scientific Imaging"
 url = "/projects/crisp/"
 description = "Research in computational reconfigurable imaging spectrometers and photoacoustic communications."
