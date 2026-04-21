@@ -4,17 +4,23 @@ description = "A cross-platform Riichi Mahjong game built from scratch in Rust a
 date = 2025-06-01
 
 [extra]
-feature_image = "agari-game-screenshot-cropped.png"
-subtitle = "Rust + Bevy // Cross-Platform // Work in Progress"
+feature_image = "agari_in_game_ui.png"
+subtitle = "Rust + Bevy // Offline-First // Cross-Platform // Work in Progress"
 +++
 
 *Work in progress — actively in development.*
 
 A standalone Riichi Mahjong game built from the ground up in Rust with the [Bevy](https://bevyengine.org/) game engine. The goal is a clean, gameplay-focused mahjong client that runs everywhere — macOS, Linux, Windows, iOS, Android, and the browser — with no compromises, no in-app purchases, and everything included out of the box.
 
+## Play Your Way
+
+**Offline by default.** No account. No login. No internet required. Open the game and play — that's it.
+
+**Online when you want.** Private game rooms let you play with friends over a seamless peer-to-peer host/client connection. One player hosts, others join with a room code. No matchmaking server, no third-party account, no data collection.
+
 ## Vertical Integration
 
-The game is built on [agari](https://github.com/rysb-dev/agari), a Riichi Mahjong scoring library I wrote from scratch and validated against roughly one million [Tenhou](https://tenhou.net/) game logs. That library handles tile decomposition, yaku detection, shanten and ukeire calculation, and scoring — the entire rule engine. The game client consumes it directly. There's no third-party game logic dependency anywhere in the stack.
+The game is built on [agari](https://github.com/rysb-dev/agari), a Riichi Mahjong scoring library I wrote from scratch and validated via cross-validation against other established Riichi Mahjong scoring engines across millions of simulated games. That library handles tile decomposition, yaku detection, shanten and ukeire calculation, and scoring — the entire rule engine. The game client consumes it directly. There's no third-party game logic dependency anywhere in the stack.
 
 This means bugs get fixed at the source, features like the tenpai helper are powered by the same proven shanten/ukeire calculations used in validation, and the whole system evolves as one unit.
 
@@ -29,7 +35,7 @@ The current build is a fully playable East-round hanchan against three AI oppone
 - **Central compass** showing live scores, seat winds, round info, riichi sticks, and remaining tiles
 - **Tenpai helper** with per-tile ukeire counts overlaid on the hand
 - **Animations** — round start cinematic, discard fly-in, Ron spotlight, Tsumo slam, opponent hand reveal, animated point exchanges
-- **Voice callouts** for Chi, Pon, Kan, Riichi, Ron, and Tsumo with per-player voice variants via VOICEVOX
+- **Voice callouts** for Chi, Pon, Kan, Riichi, Ron, and Tsumo with per-player voice variants
 - **Sound effects and BGM** with individual toggles
 - **Startup menu** with player name, AI speed, discard mode, sound/voice configuration
 
@@ -59,5 +65,5 @@ No platform left behind.
 - **Scoring:** [agari](https://github.com/rysb-dev/agari) (custom library)
 - **Architecture:** Entity Component System (ECS), multi-crate workspace
 - **Platforms:** macOS, Linux, Windows, iOS, WASM (Android planned)
-- **Audio:** VOICEVOX Nemo voice synthesis, OGG throughout
+- **Audio:** OGG throughout
 - **Build:** Cargo (native), Trunk (WASM), Xcode (iOS)
