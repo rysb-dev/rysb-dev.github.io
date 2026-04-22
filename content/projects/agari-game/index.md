@@ -1,7 +1,7 @@
 +++
 title = "Agari Game — Riichi Mahjong"
 description = "A cross-platform Riichi Mahjong game built from scratch in Rust and Bevy. Work in progress."
-date = 2025-06-01
+date = 2026-01-01
 
 [extra]
 feature_image = "agari_in_game_ui.png"
