@@ -10,6 +10,7 @@
 
   const img = lightbox.querySelector(".lightbox-content img");
   const counter = lightbox.querySelector(".lightbox-counter");
+  const caption = lightbox.querySelector(".lightbox-caption");
   const items = Array.from(document.querySelectorAll("[data-lightbox]"));
   let current = 0;
 
@@ -17,6 +18,7 @@
     current = (index + items.length) % items.length;
     img.src = items[current].dataset.lightbox;
     img.alt = items[current].querySelector("img")?.alt || "";
+    if (caption) caption.textContent = items[current].dataset.caption || "";
     counter.textContent = (current + 1) + " / " + items.length;
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";

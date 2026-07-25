@@ -40,25 +40,38 @@
         </article>
 
         {% set_global gallery_images = [] %}
-        {% for asset in page.assets %}
-            {% if asset is matching("[.](jpg|jpeg|png|webp)$") %}
-                {% set filename = asset | split(pat="/") | last %}
-                {% if filename != page.extra.feature_image %}
-                    {% set_global gallery_images = gallery_images | concat(with=asset) %}
+        {% if page.extra.gallery %}
+            {% for item in page.extra.gallery %}
+                {% set_global gallery_images = gallery_images | concat(with=page.colocated_path ~ item.file) %}
+            {% endfor %}
+        {% else %}
+            {% for asset in page.assets %}
+                {% if asset is matching("[.](jpg|jpeg|png|webp)$") %}
+                    {% set filename = asset | split(pat="/") | last %}
+                    {% if filename != page.extra.feature_image %}
+                        {% set_global gallery_images = gallery_images | concat(with=asset) %}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
 
         {% if gallery_images | length > 0 %}
         <section class="gallery-section">
             <h2>Gallery</h2>
             <div class="gallery-grid">
                 {% for asset in gallery_images %}
+                {% if page.extra.gallery %}
+                {% set thumb = resize_image(path=asset, width=680, op="fit_width", quality=82) %}
+                {% set caption = page.extra.gallery[loop.index0].caption %}
+                {% else %}
                 {% set thumb = resize_image(path=asset, width=680, height=510, op="fill", quality=80) %}
+                {% set caption = "" %}
+                {% endif %}
                 {% set full = resize_image(path=asset, width=1920, op="fit_width", quality=90) %}
-                <div class="gallery-item" data-lightbox="{{ full.url }}">
-                    <img src="{{ thumb.url }}" alt="{{ page.title }} photo {{ loop.index }}" width="{{ thumb.width }}" height="{{ thumb.height }}" loading="lazy">
-                </div>
+                <figure class="gallery-item" data-lightbox="{{ full.url }}" {% if caption %}data-caption="{{ caption }}"{% endif %}>
+                    <img src="{{ thumb.url }}" alt="{% if caption %}{{ caption }}{% else %}{{ page.title }} photo {{ loop.index }}{% endif %}" width="{{ thumb.width }}" height="{{ thumb.height }}" loading="lazy">
+                    {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+                </figure>
                 {% endfor %}
             </div>
         </section>
@@ -71,6 +84,7 @@
             <div class="lightbox-content">
                 <img src="" alt="">
             </div>
+            <div class="lightbox-caption"></div>
             <div class="lightbox-counter"></div>
         </div>
         {% endif %}

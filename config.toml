@@ -38,15 +38,15 @@ icon = "linkedin"
 
 [[extra.projects]]
 name = "Agari"
-url = "https://github.com/rysb-dev/agari"
-description = "A Riichi Mahjong scoring engine built with Rust and WASM."
+url = "https://github.com/agari-industries/agari"
+description = "An open-source Riichi Mahjong scoring engine built with Rust and WASM."
 tags = ["Rust", "WASM", "Game Logic"]
 
 [[extra.projects]]
 name = "Agari Game"
 url = "/projects/agari-game/"
-description = "Cross-platform Riichi Mahjong game built from scratch in Rust and Bevy. Work in progress."
-tags = ["Rust", "Bevy", "Game Dev", "WIP"]
+description = "Riichi Mahjong game built from scratch in Rust and Bevy. Out now on Steam."
+tags = ["Rust", "Bevy", "Game Dev", "Steam"]
 
 [[extra.projects]]
 name = "Scientific Imaging"
