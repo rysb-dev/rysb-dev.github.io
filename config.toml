@@ -21,9 +21,9 @@ stack = [
     "Python",
     "Data Science",
     "Scientific Computing",
+    "Algorithms",
     "Rust",
-    "Linux",
-    "Agentic Workflows"
+    "Linux"
 ]
 
 [[extra.socials]]
@@ -37,16 +37,16 @@ url = "https://linkedin.com/in/sullenberger"
 icon = "linkedin"
 
 [[extra.projects]]
-name = "Agari"
-url = "https://github.com/agari-industries/agari"
-description = "An open-source Riichi Mahjong scoring engine built with Rust and WASM."
-tags = ["Rust", "WASM", "Game Logic"]
-
-[[extra.projects]]
-name = "Agari Game"
+name = "Agari \u2014 Riichi Mahjong"
 url = "/projects/agari-game/"
 description = "Riichi Mahjong game built from scratch in Rust and Bevy. Out now on Steam."
 tags = ["Rust", "Bevy", "Game Dev", "Steam"]
+
+[[extra.projects]]
+name = "Agari"
+url = "https://github.com/agari-industries/agari"
+description = "The open-source core scoring library for Agari \u2014 Riichi Mahjong, built with Rust and WASM."
+tags = ["Rust", "WASM", "Game Logic"]
 
 [[extra.projects]]
 name = "Scientific Imaging"
